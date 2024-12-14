@@ -64,3 +64,4 @@ The studio will be visible on localhost:5555
 - [ ] Create authentication process ( jwt : access + fresh )
 - [ ] Create search page
 - [ ] Create admin management dashboard
+- [ ] Create api route
