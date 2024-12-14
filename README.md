@@ -3,8 +3,10 @@
 ## Technos
 
 - Nextjs
-- Prisma orm
+- Prisma orm ( to query sqlite database)
 - ShadcnUi and TailwindCSS
+- bcryptjs (encrypt password)
+- jose (encode jwt)
 
 ### Run project
 
@@ -58,10 +60,10 @@ The studio will be visible on localhost:5555
 
 ## TODO
 
-- [ ] Create seed ( admin, films, series, cine, .....)
+- [ ] Create seed ( admin, films, series, cine, .....) (1)
+- [X] Create authentication api routes ( login + signin )
 - [ ] Create login page
 - [ ] Create film display page
-- [ ] Create authentication process ( jwt : access + fresh )
 - [ ] Create search page
 - [ ] Create admin management dashboard
-- [ ] Create api route
+- [ ] Create api route for movies and search (2)

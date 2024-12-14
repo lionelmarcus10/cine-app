@@ -17,6 +17,7 @@ model Movie {
   director   String
   actors     Actor[]     @relation("MovieActors")
   screenings Screening[]
+  slug       String
 }
 
 // Actor model - Implicit many-to-many relationship
@@ -49,6 +50,6 @@ model Screening {
 // Administrator model
 model Administrator {
   id       Int    @id @default(autoincrement())
-  username String @unique
+  email String @unique
   password String
 }

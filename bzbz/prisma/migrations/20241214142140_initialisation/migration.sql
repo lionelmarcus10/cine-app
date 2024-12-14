@@ -5,7 +5,8 @@ CREATE TABLE "Movie" (
     "duration" INTEGER NOT NULL,
     "language" TEXT NOT NULL,
     "ageLimit" INTEGER NOT NULL,
-    "director" TEXT NOT NULL
+    "director" TEXT NOT NULL,
+    "slug" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -36,7 +37,7 @@ CREATE TABLE "Screening" (
 -- CreateTable
 CREATE TABLE "Administrator" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "username" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "password" TEXT NOT NULL
 );
 
@@ -49,7 +50,7 @@ CREATE TABLE "_MovieActors" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Administrator_username_key" ON "Administrator"("username");
+CREATE UNIQUE INDEX "Administrator_email_key" ON "Administrator"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_MovieActors_AB_unique" ON "_MovieActors"("A", "B");
