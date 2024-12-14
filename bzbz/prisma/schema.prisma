@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,52 +7,48 @@ datasource db {
   url      = "file:./db_file/db.sqlite"
 }
 
+// Movie model
 model Movie {
-  id        Int         @id @default(autoincrement())  // Identifiant unique du film
-  title     String                                      // Titre du film
-  duration  Int                                         // Durée en minutes
-  language  String                                      // Langue originale
-  ageLimit  Int                                         // Âge minimum requis
-  director  String                                      // Nom du réalisateur
-  screenings Screening[]                                // Relation avec Screening (ancienne table Showtimes)
-  subtitles Subtitle[]                                  // Liste de sous-titres (relation)
-  actors    Actor[]                                     // Liste des acteurs principaux (relation)
+  id         Int         @id @default(autoincrement())
+  title      String
+  duration   Int
+  language   String      // Simulating the enum as String (e.g., 'ENGLISH', 'FRENCH')
+  ageLimit   Int
+  director   String
+  actors     Actor[]     @relation("MovieActors")
+  screenings Screening[]
 }
 
-model Cinema {
-  id      Int       @id @default(autoincrement())  // Identifiant unique de la salle
-  name    String                                     // Nom de la salle de cinéma
-  city    String                                     // Ville où se trouve la salle
-  address String                                    // Adresse complète
-  screenings Screening[]                            // Relation avec Screening (ancienne table Showtimes)
-}
-
-model Screening {
-  id        Int      @id @default(autoincrement())  // Identifiant unique de la séance
-  movieId   Int                                         // Référence à Movie
-  cinemaId  Int                                         // Référence à Cinema
-  startTime DateTime                                    // Date et heure de début de la séance
-  movie     Movie    @relation(fields: [movieId], references: [id])   // Relation avec Movie
-  cinema    Cinema   @relation(fields: [cinemaId], references: [id])  // Relation avec Cinema
-}
-
-model Subtitle {
-  id      Int    @id @default(autoincrement())      // Identifiant unique du sous-titre
-  text    String                                   // Texte du sous-titre
-  movieId Int                                      // Référence à Movie
-  movie   Movie  @relation(fields: [movieId], references: [id]) // Relation avec Movie
-}
-
+// Actor model - Implicit many-to-many relationship
 model Actor {
-  id      Int    @id @default(autoincrement())      // Identifiant unique de l'acteur
-  name    String                                   // Nom de l'acteur
-  movieId Int                                      // Référence à Movie
-  movie   Movie  @relation(fields: [movieId], references: [id]) // Relation avec Movie
+  id     Int       @id @default(autoincrement())
+  name   String
+  movies Movie[]   @relation("MovieActors")
 }
 
+// Cinema model
+model Cinema {
+  id         Int         @id @default(autoincrement())
+  name       String
+  city       String
+  address    String
+  screenings Screening[]
+}
+
+// Screening model
+model Screening {
+  id         Int       @id @default(autoincrement())
+  movieId    Int
+  cinemaId   Int
+  startTime  DateTime
+  subtitle   String    // Simulating the enum as String (e.g., 'ENGLISH', 'FRENCH', 'NONE')
+  movie      Movie     @relation(fields: [movieId], references: [id])
+  cinema     Cinema    @relation(fields: [cinemaId], references: [id])
+}
+
+// Administrator model
 model Administrator {
-  id       Int       @id @default(autoincrement())  // Identifiant unique de l'administrateur
-  username String    // Nom d'utilisateur pour la connexion
-  email    String    @unique                        // Email (doit être unique)
-  password String    // Mot de passe (hashé)
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
 }
