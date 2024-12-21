@@ -3,6 +3,9 @@ import { isValidEmail, isValidPassword } from "@/lib/utils";
 import prisma from "@/prisma/db";
 import bcrypt from "bcryptjs";
 
+
+
+
 export async function POST(request: Request) {
   // Read data off req body
   const body = await request.json();

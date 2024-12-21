@@ -28,13 +28,38 @@ Go on `cine-app > bzbz` and run
 npx prisma db pull
 ```
 
-#### 2.1 - Generate client schema
+#### 2.2 - Generate client schema
 
 ```bash
 npx prisma generate
 ```
 
+
+#### 2.3 - Seed the database
+
+- You could change the number of movies and cinema in `.env` file once you create it in the next section
+
+|variable|meanings|
+|--------|--------|
+|TOTAL_MOVIES| number of movies to create during the seed|
+|TOTAL_CINEMA| number of cinema to create during the seed|
+
+
+
+```bash
+npm run seed
+```
+
+
+
 ### 3 - Run the webapp
+
+### 3.1 - Add `.env`
+
+- Copy the file `.env.exemple` on a new file `.env` 
+- Populate it with the environment values ( ask a member)
+
+### 3.2 - Run app
 
 Go on `cine-app > bzbz` and run 
 
@@ -73,10 +98,8 @@ Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 
 ## TODO
 
-- [ ] Create seed ( admin, films, series, cine, .....) (1)
-- [X] Create authentication api routes ( login + signin )
-- [ ] Create login page
-- [ ] Create film display page
+- [ ] Create api route for movies crud and search 
+- [ ] Create login/signup page
+- [ ] Create film details display page
 - [ ] Create search page
 - [ ] Create admin management dashboard
-- [ ] Create api route for movies and search (2)

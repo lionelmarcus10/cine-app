@@ -7,49 +7,48 @@ datasource db {
   url      = "file:./db_file/db.sqlite"
 }
 
-// Movie model
 model Movie {
-  id         Int         @id @default(autoincrement())
+  id         Int         @id @unique
   title      String
   duration   Int
-  language   String      // Simulating the enum as String (e.g., 'ENGLISH', 'FRENCH')
+  language   String
   ageLimit   Int
   director   String
-  actors     Actor[]     @relation("MovieActors")
+  slug       String      @unique
+  photo      String?
+  video      String?
+  synopsis   String
   screenings Screening[]
-  slug       String
+  actors     Actor[]     @relation("MovieActors")
 }
 
-// Actor model - Implicit many-to-many relationship
 model Actor {
-  id     Int       @id @default(autoincrement())
-  name   String
-  movies Movie[]   @relation("MovieActors")
+  id      Int     @id @unique
+  name    String
+  profile String?
+  movies  Movie[] @relation("MovieActors")
 }
 
-// Cinema model
 model Cinema {
-  id         Int         @id @default(autoincrement())
+  id         Int         @id @unique
   name       String
   city       String
   address    String
   screenings Screening[]
 }
 
-// Screening model
 model Screening {
-  id         Int       @id @default(autoincrement())
-  movieId    Int
-  cinemaId   Int
-  startTime  DateTime
-  subtitle   String    // Simulating the enum as String (e.g., 'ENGLISH', 'FRENCH', 'NONE')
-  movie      Movie     @relation(fields: [movieId], references: [id])
-  cinema     Cinema    @relation(fields: [cinemaId], references: [id])
+  id        Int      @id @default(autoincrement())
+  movieId   Int
+  cinemaId  Int
+  startTime DateTime
+  subtitle  String
+  cinema    Cinema   @relation(fields: [cinemaId], references: [id])
+  movie     Movie    @relation(fields: [movieId], references: [id])
 }
 
-// Administrator model
 model Administrator {
   id       Int    @id @default(autoincrement())
-  email String @unique
+  email    String @unique
   password String
 }

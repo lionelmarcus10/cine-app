@@ -6,13 +6,17 @@ CREATE TABLE "Movie" (
     "language" TEXT NOT NULL,
     "ageLimit" INTEGER NOT NULL,
     "director" TEXT NOT NULL,
-    "slug" TEXT NOT NULL
+    "slug" TEXT NOT NULL,
+    "photo" TEXT,
+    "video" TEXT,
+    "synopsis" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "Actor" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "name" TEXT NOT NULL,
+    "profile" TEXT
 );
 
 -- CreateTable
@@ -30,8 +34,8 @@ CREATE TABLE "Screening" (
     "cinemaId" INTEGER NOT NULL,
     "startTime" DATETIME NOT NULL,
     "subtitle" TEXT NOT NULL,
-    CONSTRAINT "Screening_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Screening_cinemaId_fkey" FOREIGN KEY ("cinemaId") REFERENCES "Cinema" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Screening_cinemaId_fkey" FOREIGN KEY ("cinemaId") REFERENCES "Cinema" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Screening_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -48,6 +52,18 @@ CREATE TABLE "_MovieActors" (
     CONSTRAINT "_MovieActors_A_fkey" FOREIGN KEY ("A") REFERENCES "Actor" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "_MovieActors_B_fkey" FOREIGN KEY ("B") REFERENCES "Movie" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Movie_id_key" ON "Movie"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Movie_slug_key" ON "Movie"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Actor_id_key" ON "Actor"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Cinema_id_key" ON "Cinema"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Administrator_email_key" ON "Administrator"("email");
