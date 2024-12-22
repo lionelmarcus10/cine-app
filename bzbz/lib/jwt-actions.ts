@@ -27,6 +27,7 @@ export async function verifyJWT(token: string) {
         return null; // Token has expired
     }
     return payload;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return null;
   }

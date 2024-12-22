@@ -1,8 +1,5 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import * as jose from "jose";
-// import { unauthorized } from "next/navigation";
 import { verifySession } from "./lib/jwt-actions";
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
