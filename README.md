@@ -99,7 +99,6 @@ Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 ## TODO
 
 - [ ] Create api route for movies crud and search 
-- [ ] Create login/signup page
 - [ ] Create film details display page
 - [ ] Create search page
 - [ ] Create admin management dashboard
