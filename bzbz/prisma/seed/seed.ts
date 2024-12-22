@@ -360,10 +360,13 @@ export async function launchSeed() {
     
     // Populate Administrator table
     await populateAdminAccount();
+    console.log("Adding movies......")
     // Populate Movie and Actor table
     await populateDatabaseWithTrendingMovies(Totalmovies);
+    console.log("Adding cinemas......")
     // Populate cinema table
     await populateCinema(TotalCinema)
+    console.log("Adding screenings......")
     // Populate screening table
     populateScreenings(TotalScreening)
 }

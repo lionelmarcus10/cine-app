@@ -20,5 +20,11 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+	
+		function ({ addVariant }) {
+		  addVariant('not-placeholder-shown', '&:not(:placeholder-shown)'); // Adds support for `not-placeholder-shown:`
+		},
+	  
+  ],
 } satisfies Config;
