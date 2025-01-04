@@ -85,12 +85,12 @@ The studio will be visible on localhost:5555
 
 après avoir lancé l'application web, vous pouvez visiter les liens suivant qui sont disponible
 
-`localhost:3000/unauthorized` => '( Page sur laquelle sont redirigé les visiteurs qui n'ont pas de droit et veulent acceder à des fonctionnalités admin)
-`localhost:3000/admin-dashboard` => (Dashboard admin pour créer des films et les gérer)
-`localhost:3000/movies/slug-of-film` => (page de visualisation détaillé des infos d'un film)
-`localhost:3000/` => page d'accueil et de recherche des filmes (possiblement)
-`localhost:3000/authentication` => (page d'authentification et de création de compte admin)
-``
+- `localhost:3000/unauthorized` => '( Page sur laquelle sont redirigé les visiteurs qui n'ont pas de droit et veulent acceder à des fonctionnalités admin)
+- `localhost:3000/admin-dashboard` => (Dashboard admin pour créer des films et les gérer)
+- `localhost:3000/movies/slug-of-film` => (page de visualisation détaillé des infos d'un film)
+- `localhost:3000/` => page d'accueil et de recherche des filmes (possiblement)
+- `localhost:3000/authentication` => (page d'authentification et de création de compte admin)
+- `localhost:3000/api-doc` => Page Swagger pour tester l'api
 
 Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 
@@ -98,7 +98,12 @@ Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 
 ## TODO
 
-- [ ] Create api route for movies crud and search 
-- [ ] Create film details display page
-- [ ] Create search page
-- [ ] Create admin management dashboard
+- [ ] Create search functionality (map & display) (front)
+- [ ] Create admin management dashboard (front)
+- [ ] endpoint (api) => create actor and film in one + add to cinema for admin usage
+
+### Next update (lionel) todo
+
+- [ ] Create film details display page (front)
+- [ ] Search process (api)
+- [ ] Finish homepage
