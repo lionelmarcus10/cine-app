@@ -15,6 +15,7 @@ export const getApiDocs = async () => {
             type: "http",
             scheme: "bearer",
             bearerFormat: "JWT",
+            name: "Authorization"
           },
         },
       },

@@ -261,7 +261,7 @@ async function populateDatabaseWithTrendingMovies(movieNumber: number) {
               id: actor.id,
               name: actor.name,
               profile: actor.profile_path
-                ? `${process.env.TMDB_IMG_URL}${actor.profile_path}`
+                ? actor.profile_path
                 : null,
             },
           });

@@ -1,8 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NavBar from '@/components/custom/NavBar';
 import '../style/back.css'
 import HomeGridImages from '@/components/custom/HomeGridImages';
+import { fetchMovies } from './actions/movie.action';
+import MovieCard from '@/components/custom/MovieCard';
+import { Suspense } from 'react';
 
-export default function Page() {
+export default async function Page() {
+
+  
+  const {hits} = await fetchMovies(1)
+  
+  const img_base_url = `${process.env.TMDB_IMG_URL}/${process.env.TMDB_IMG_THUMB_SIZE}`
   return (
   <div className="h-screen w-full custom-bg mx-auto">
       <div className="wbf p-5 backdrop-blur-3xl w-full h-full flex items-center justify-center">
@@ -17,17 +26,11 @@ export default function Page() {
             </div>
             <div className="w-full pb-10 space-y-4">
               <h1 className='text-2xl text-white'>Trending in Movies</h1>
-              <div className="w-full bg-orange-500 grid gap-y-8 gap-x-4 xl:gap-8 grid-cols-1 min-[450px]:!grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 place-items-start">
-                {Array.from({ length: 20 }, (_, index) => (
-                  <div  key={index} className="col-span-1 w-full space-y-1 flex flex-col text-white">
-                      <div className="bg-red-500 rounded-2xl py-20">
-                        <p>Test img</p>
-                      </div>
-                      <div className="pt-2">
-                        <p className='line-clamp-1'>Film title</p>
-                      </div>
-                      <p> 7/20 | 2024</p>
-                  </div>
+              <div className="w-full grid gap-y-8 gap-x-4 xl:gap-8 grid-cols-1 min-[450px]:!grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-6 xl:!grid-cols-7 place-items-start">
+                {hits.map((movie: any, index: number) => (
+                  <Suspense key={index} fallback={<p>Loading...</p>}>
+                    <MovieCard movie={movie} base={img_base_url} />
+                  </Suspense>
                 ))}
               </div>
             </div>
