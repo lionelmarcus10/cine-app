@@ -35,6 +35,7 @@ import bcrypt from "bcryptjs";
  * /api/signup:
  *   post:
  *     summary: User signup
+ *     tags: [Authentication]
  *     description: Creates a new user and returns a success message.
  *     requestBody:
  *       required: true

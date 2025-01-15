@@ -37,6 +37,7 @@ import bcrypt from "bcryptjs";
  * /api/login:
  *   post:
  *     summary: User login
+ *     tags: [Authentication]
  *     description: Authenticates a user and returns a JWT token.
  *     requestBody:
  *       required: true

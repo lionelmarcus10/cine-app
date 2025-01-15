@@ -98,12 +98,13 @@ Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 
 ## TODO
 
-- [ ] Create search functionality (map & display) (front)
 - [ ] Create admin management dashboard (front)
-- [ ] endpoint (api) => create actor and film in one + add to cinema for admin usage
-
-### Next update (lionel) todo
-
+- [ ] endpoint (api) => create actor and film in one + add to cinema for admin usage ( backend admin)
 - [ ] Create film details display page (front)
-- [ ] Search process (api)
-- [ ] Finish homepage
+
+
+# Definition of done
+
+- Revoir apidoc pour reattribuer les tags 
+- Tester tous les endpoints
+- Renommer certains endpoints

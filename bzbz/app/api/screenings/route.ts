@@ -9,6 +9,7 @@ const prisma = new PrismaClient();
  * /api/screenings:
  *   get:
  *     summary: Retrieve a paginated list of screenings
+ *     tags: [Screenings]
  *     description: Fetches a paginated list of all screenings available in the database.
  *     parameters:
  *       - in: query
@@ -150,6 +151,7 @@ export async function GET(request: Request) {
  * /api/screenings:
  *   post:
  *     summary: Create a new screening
+ *     tags: [Screenings]
  *     description: Creates a new screening with the provided details. Requires admin authentication.
  *     parameters:
  *       - in: header

@@ -4,13 +4,12 @@ import { verifyJWT } from '@/lib/jwt-actions';
 
 const prisma = new PrismaClient();
 
-
-
 /**
  * @swagger
  * /api/screenings/{id}:
  *   get:
  *     summary: Retrieve a screening by ID
+ *     tags: [Screenings]
  *     description: Fetches a screening based on the provided ID.
  *     parameters:
  *       - in: path
@@ -128,6 +127,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
  * /api/screenings/{id}:
  *   put:
  *     summary: Update a screening by ID
+ *     tags: [Screenings]
+
  *     description: Updates a screening based on the provided ID. All fields are optional.
  *     parameters:
  *       - in: path
@@ -255,6 +256,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
  * /api/screenings/{id}:
  *   delete:
  *     summary: Delete a screening by ID
+ *     tags: [Screenings]
  *     description: Deletes a screening based on the provided ID.
  *     parameters:
  *       - in: path
