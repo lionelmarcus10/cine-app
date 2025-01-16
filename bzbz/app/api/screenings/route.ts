@@ -284,7 +284,6 @@ export async function POST(request: Request) {
                 subtitle: subtitle
             },
         });
-        console.log("ddd",newScreening)
         return NextResponse.json(newScreening, { status: 201 });
     } catch (error) {
         console.error('Error creating screening:', error);

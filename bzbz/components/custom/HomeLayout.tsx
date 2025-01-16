@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useQueryState, parseAsBoolean } from 'nuqs'
 import React from 'react'
@@ -11,15 +10,16 @@ export default function HomeLayout({ ImageBase}: { ImageBase : string }) {
     
     // get display
     const [searchMode, setSearchMode] = useQueryState('searchMode', parseAsBoolean.withDefault(false))
-    
+    const categories = ["Action","Comedy","Drama","Horror","Science Fiction","Romance","Thriller","Animation","Fantasy","Documentary","Adventure","Musical","Crime","War","Western","Historical","Family","Biography","Mystery","Sports"]
+      
   return (
     <div className=" bg-[#899296] overflow-y-auto relative invisible-scrollbar backdrop-blur-3xl shadow-xl sm:w-10/12 md:h-5/6 w-full h-full rounded-3xl p-5 flex flex-col space-y-6 z-10">
         <NavBar/>
         <div className="h-full">
         <HomeGridImages />
         <div className="mt-5 mb-8 flex  overflow-y-hidden invisible-scrollbar space-x-5 pr-4">
-            {Array.from({ length: 30 }, (_, index) => (
-            <p key={index} className="border rounded-xl h-11 w-56 px-5 shadow-xl text-nowrap py-2">Category {index + 1}</p>
+            {categories.map((category, index) => (
+            <p key={index} className="border rounded-xl h-11 w-56 px-5 shadow-xl text-nowrap py-2">{category}</p>
             ))}
         </div>
         <div className="w-full pb-10 space-y-4">
@@ -34,7 +34,6 @@ export default function HomeLayout({ ImageBase}: { ImageBase : string }) {
 
             </div>
             <MoviesInfiniteScroll search={searchMode} ImageBase={ImageBase} />
-            
         </div>
         </div>
     </div>

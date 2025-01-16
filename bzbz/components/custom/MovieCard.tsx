@@ -6,9 +6,6 @@ import Link from 'next/link';
 
 export default function MovieCard({ movie } : { movie: any} ) {
 
-  if( !movie.photo){
-    console.log(movie)
-  }
 
   return (
     <Link target='_blank' className="col-span-1 w-full space-y-1 flex flex-col text-white transition-transform active:scale-95" href={`/movies/${movie.slug}`}>

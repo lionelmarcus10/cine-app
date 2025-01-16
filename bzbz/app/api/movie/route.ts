@@ -130,6 +130,7 @@ const prisma = new PrismaClient();
  * /api/movie:
  *   get:
  *     summary: Retrieve a paginated list of movies
+ *     tags: [Movie]
  *     description: Fetches a list of movies with pagination support.
  *     parameters:
  *       - in: query
@@ -202,6 +203,7 @@ export async function GET(request: Request) {
  * /api/movie:
  *   post:
  *     summary: Create a new movie
+ *     tags: [Movie]
  *     description: Creates a new movie with the provided details. Requires admin authentication.
  *     parameters:
  *       - in: header

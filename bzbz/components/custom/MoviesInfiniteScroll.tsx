@@ -1,21 +1,30 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchMovies, searchMovies } from '@/app/actions/movie.action';
-import { useIntersection } from '@/hooks/custom/UseInteraction';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { Suspense, useEffect, useRef } from 'react'
 import MovieCard from './MovieCard';
 import { useQueryState } from 'nuqs';
+import { useDebouncedValue } from '@/hooks/custom/useDebouncedValue';
+import { useIntersection } from '@/hooks/custom/useInteraction';
 
 export default function MoviesInfiniteScroll( { ImageBase, search}: { ImageBase : string, search: boolean } ) {
 
-    const [searchParam] = useQueryState('value')
+    const [searchParam, setSearchParam] = useQueryState('value');
+    const [debouncedParameter] = useDebouncedValue(searchParam, 100);
 
+    
+    useEffect(() => {
+        if (debouncedParameter) {
+            refetch(); // Refetch the movies with the new search parameter directly
+        }
+    }, [debouncedParameter]);
+    
     // get all films,  
     const getMovies = async ({ pageParam }: { pageParam?: number }) => {
-        console.log(pageParam)
-        const res = search ? await searchMovies(pageParam, searchParam ?? "Paris" ) : await fetchMovies(pageParam);
-        console.log(res)
+        const finalSearchParam = searchParam && searchParam.trim() !== "" ? searchParam : " ";
+        const res = search && finalSearchParam ? await searchMovies(pageParam!, finalSearchParam) : await fetchMovies(pageParam!);
         return res;
     }
 
@@ -25,6 +34,7 @@ export default function MoviesInfiniteScroll( { ImageBase, search}: { ImageBase 
         fetchNextPage,
         hasNextPage,
         status,
+        refetch
     } = useInfiniteQuery({
         queryKey: ['films', search], // Include search in the query key
         queryFn: getMovies,
@@ -48,7 +58,7 @@ export default function MoviesInfiniteScroll( { ImageBase, search}: { ImageBase 
     }, [entry]);
 
     const hits = data?.pages.flatMap(page => 
-        page.hits.map(movie => ({
+        page.hits.map((movie: { photo: string; [key: string]: any }) => ({
             ...movie,
             photo: `${ImageBase}/${movie.photo}` // Add src property with the constructed URL
         }))

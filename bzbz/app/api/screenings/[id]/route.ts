@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { verifyJWT } from '@/lib/jwt-actions';
@@ -79,7 +80,7 @@ const prisma = new PrismaClient();
  *                   type: string
  *                   example: Failed to fetch screening
  */
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: any ) {
     const identifier = (await params).id;
 
     try {
@@ -198,7 +199,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
  *     security:
  *       - BearerAuth: []
  */
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: any ) {
     const authToken = (request.headers.get('Authorization') || '').split("Bearer ").at(1);
     if (!authToken) {
         return NextResponse.json(
@@ -306,7 +307,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
  *     security:
  *       - BearerAuth: []
  */
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: any ) {
     const authToken = (request.headers.get('Authorization') || '').split("Bearer ").at(1);
     if (!authToken) {
         return NextResponse.json(

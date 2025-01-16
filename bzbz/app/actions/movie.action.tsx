@@ -92,3 +92,42 @@ export async function searchMovies(page: number, search: string) {
     }
 }
 
+
+
+
+export async function getMovieById(idOrSlug: string) {
+    if (!idOrSlug || typeof idOrSlug !== 'string') {
+        return {
+            error: 'Invalid ID/SLUG parameter',
+            status: 400
+        };
+    }
+
+    try {
+        const res = await fetch(`http://localhost:3000/api/movie/${idOrSlug}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!res.ok) {
+            const errorData = await res.json();
+            return {
+                error: errorData.error || 'Failed to fetch movie',
+                status: res.status
+            };
+        }
+
+        const data = await res.json();
+        return {
+            data,
+            status: 200
+        };
+    } catch (error) {
+        console.error('Error fetching movie by ID:', error);
+        return {
+            error: 'Failed to fetch movie',
+            status: 500
+        };
+    }
+}

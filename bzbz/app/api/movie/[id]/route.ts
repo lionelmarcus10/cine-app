@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { verifyJWT } from '@/lib/jwt-actions';
@@ -7,13 +8,14 @@ const prisma = new PrismaClient();
 
 /**
  * @swagger
- * /api/movie/{id}:
+ * /api/movie/{idSlug}:
  *   get:
  *     summary: Retrieve a movie by ID or slug
+ *     tags: [Movie]
  *     description: Fetches a movie based on the provided ID or slug.
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: idSlug
  *         required: true
  *         description: The unique identifier for the movie, either as an ID or a slug.
  *         schema:
@@ -134,11 +136,10 @@ const prisma = new PrismaClient();
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: any
 ) {
     try {
         const identifier = (await params).id;
-
         // Determine if the identifier is a number or a slug
         const isNumeric = !isNaN(Number(identifier));
         const type = isNumeric ? 'id' : 'slug'; // default to 'id' if numeric, otherwise 'slug'
@@ -182,6 +183,7 @@ export async function GET(
  * /api/movie/{id}:
  *   delete:
  *     summary: Delete a movie by ID
+ *     tags: [Movie]
  *     description: Deletes a movie based on the provided ID.
  *     parameters:
  *       - in: path
@@ -264,7 +266,7 @@ export async function GET(
 
 export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: any
 ) {
 
     
@@ -334,9 +336,10 @@ export async function DELETE(
 
 /**
  * @swagger
- * /api/movies/{id}:
+ * /api/movie/{id}:
  *   put:
  *     summary: Update a movie by ID
+ *     tags: [Movie]
  *     description: Updates the details of a movie based on the provided ID. All fields are optional.
  *     parameters:
  *       - in: path
@@ -420,7 +423,7 @@ export async function DELETE(
  */
 
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: any ) {
     const identifier = (await params).id;
 
     // Ensure the identifier is a number
@@ -506,6 +509,3 @@ export async function PUT(request: Request, { params }: { params: { id: string }
         );
     }
 }
-
-
-

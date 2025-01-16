@@ -102,9 +102,7 @@ Leur code est dans `cine-app > bzbz > app > (website) > <dossier> > page.tsx`
 - [ ] endpoint (api) => create actor and film in one + add to cinema for admin usage ( backend admin)
 - [ ] Create film details display page (front)
 
-
 # Definition of done
 
-- Revoir apidoc pour reattribuer les tags 
 - Tester tous les endpoints
-- Renommer certains endpoints
+- Renommer certains endpoints ( movie / movies )

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,7 +24,7 @@ export default {
   },
   plugins: [require("tailwindcss-animate"),
 	
-		function ({ addVariant }) {
+		function ({ addVariant } : any) {
 		  addVariant('not-placeholder-shown', '&:not(:placeholder-shown)'); // Adds support for `not-placeholder-shown:`
 		},
 	  

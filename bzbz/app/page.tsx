@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import '../style/back.css'
 import HomeLayout from '@/components/custom/HomeLayout';
 
