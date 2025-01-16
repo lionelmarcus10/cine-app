@@ -233,7 +233,7 @@ async function populateDatabaseWithTrendingMovies(movieNumber: number) {
         title: movie.title,
         duration: movie.runtime,
         language: movie.original_language,
-        ageLimit: 0, // Assuming no age limit is provided
+        ageLimit: Math.floor(Math.random() * 18), // Random age limit between 0 and 17
         director:
           movie.credits.crew.find(
             (crewMember: { job: string; name: string }) => crewMember.job === 'Director'

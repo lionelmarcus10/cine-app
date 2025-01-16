@@ -105,5 +105,5 @@ export async function POST(request: Request) {
   // Create jwt token
   const jwt = await createJWT(user)
   // Respond with it
-  return Response.json({ token: jwt });
+  return Response.json({ token: jwt , email: user.email});
 }

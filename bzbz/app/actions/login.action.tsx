@@ -34,6 +34,15 @@ export default async function login(
         sameSite: "strict",
       });
 
+    const email = formData.get("email") as string; // Ensure email is treated as a string
+    const username = email.split("@")[0]; // Extract username from email
+
+    (await cookies()).set("username", username, {
+        secure: true,
+        path: "/",
+        sameSite: "strict",
+    });
+
     redirect("/admin-dashboard");
   } else {
     return json.error;
